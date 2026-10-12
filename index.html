@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="ZgcX2M6F6BBtyXR7BpWW8i">
+<head data-page-node-id="1HF1g24pCyasn9AajHICOr">
+<meta charset="UTF-8" data-page-node-id="HEVIGhWHTHDFe1w3SobNS4">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="G8buzKIdAFDgtvtdcXXQd4">
+<title>毕业论文格式校验工具</title>
+<!-- 内联 SVG 图标：避免浏览器自动请求 /favicon.ico 产生 404，同时保持零外部依赖 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233a5a8c'/%3E%3Cpath d='M9 7h14v18H9z' fill='%23fff'/%3E%3Cpath d='M12 12h8M12 16h8M12 20h5' stroke='%233a5a8c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>
+/* ============================================================================
+   内置 ZIP 读写 —— 零依赖，不引用任何外部库
+   读取用浏览器原生 DecompressionStream('deflate-raw')，写回用 CompressionStream
+   这样整个工具就是一个纯静态单文件：无外链、无 CDN、无同目录文件依赖
+   ============================================================================ */
+/* 内嵌的示例论文（base64），供「加载示例」按钮使用 —— 不依赖任何同目录文件 */
+const DEMO_B64 = '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';
+
+const CRC_T = (() => {
+  const t = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); t[n] = c >>> 0; }
+  return t;
+})();
+function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+const U8 = new TextEncoder();
+const TD = new TextDecoder('utf-8');
+
+async function pipeInflate(raw) {
+  if (typeof DecompressionStream !== 'undefined') {
+    try {
+      const ds = new DecompressionStream('deflate-raw');
+      const ab = await new Response(new Blob([raw]).stream().pipeThrough(ds)).arrayBuffer();
+      return new Uint8Array(ab);
+    } catch (e) { /* 落到下面的纯 JS 实现 */ }
+  }
+  return inflateRaw(raw);   /* 兜底：老浏览器也能用，只是慢一些 */
+}
+
+/* ---------------------------------------------------------------------------
+   纯 JS 的 DEFLATE 解压（raw inflate）
+   只在浏览器不支持原生 DecompressionStream 时使用。约 2 KB，远小于引入整个库。
+   --------------------------------------------------------------------------- */
+function inflateRaw(inU8) {
+  let pos = 0, bitPos = 0, outLen = 0;
+  let out = new Uint8Array(Math.max(4096, inU8.length * 4));
+  const ensure = n => {
+    if (outLen + n <= out.length) return;
+    let cap = out.length * 2;
+    while (cap < outLen + n) cap *= 2;
+    const b = new Uint8Array(cap); b.set(out.subarray(0, outLen)); out = b;
+  };
+  const bits = n => {
+    let v = 0;
+    for (let i = 0; i < n; i++) {
+      v |= ((inU8[pos] >> bitPos) & 1) << i;
+      if (++bitPos === 8) { bitPos = 0; pos++; }
+    }
+    return v;
+  };
+  const build = lens => {
+    let maxBits = 0;
+    for (const l of lens) if (l > maxBits) maxBits = l;
+    const cnt = new Array(maxBits + 1).fill(0);
+    for (const l of lens) if (l) cnt[l]++;
+    const code = new Array(maxBits + 1).fill(0);
+    let c = 0;
+    for (let b = 1; b <= maxBits; b++) { c = (c + cnt[b - 1]) << 1; code[b] = c; }
+    const map = new Map();
+    for (let sym = 0; sym < lens.length; sym++) {
+      const l = lens[sym];
+      if (!l) continue;
+      map.set((l << 16) | code[l], sym);
+      code[l]++;
+    }
+    return { maxBits, map };
+  };
+  const decode = h => {
+    let code = 0;
+    for (let len = 1; len <= h.maxBits; len++) {
+      code = (code << 1) | bits(1);
+      const s = h.map.get((len << 16) | code);
+      if (s !== undefined) return s;
+    }
+    throw new Error('INFLATE');
+  };
+  const LBASE = [3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258];
+  const LEXT  = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];
+  const DBASE = [1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577];
+  const DEXT  = [0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13];
+  let fixedL = null, fixedD = null;
+  try {
+    for (;;) {
+      const last = bits(1), type = bits(2);
+      if (type === 0) {
+        if (bitPos) { bitPos = 0; pos++; }
+        const len = inU8[pos] | (inU8[pos + 1] << 8);
+        pos += 4;
+        ensure(len);
+        out.set(inU8.subarray(pos, pos + len), outLen);
+        outLen += len; pos += len;
+      } else if (type === 1 || type === 2) {
+        let hL, hD;
+        if (type === 1) {
+          if (!fixedL) {
+            const l = new Array(288);
+            for (let i = 0; i < 144; i++) l[i] = 8;
+            for (let i = 144; i < 256; i++) l[i] = 9;
+            for (let i = 256; i < 280; i++) l[i] = 7;
+            for (let i = 280; i < 288; i++) l[i] = 8;
+            fixedL = build(l);
+            fixedD = build(new Array(30).fill(5));
+          }
+          hL = fixedL; hD = fixedD;
+        } else {
+          const hlit = bits(5) + 257, hdist = bits(5) + 1, hclen = bits(4) + 4;
+          const ord = [16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15];
+          const clen = new Array(19).fill(0);
+          for (let i = 0; i < hclen; i++) clen[ord[i]] = bits(3);
+          const hC = build(clen);
+          const lens = [];
+          while (lens.length < hlit + hdist) {
+            const s = decode(hC);
+            if (s < 16) lens.push(s);
+            else if (s === 16) { const r = bits(2) + 3, p = lens[lens.length - 1]; for (let i = 0; i < r; i++) lens.push(p); }
+            else if (s === 17) { const r = bits(3) + 3; for (let i = 0; i < r; i++) lens.push(0); }
+            else { const r = bits(7) + 11; for (let i = 0; i < r; i++) lens.push(0); }
+          }
+          hL = build(lens.slice(0, hlit));
+          hD = build(lens.slice(hlit));
+        }
+        for (;;) {
+          const s = decode(hL);
+          if (s < 256) { ensure(1); out[outLen++] = s; }
+          else if (s === 256) break;
+          else {
+            const li = s - 257;
+            if (li >= LBASE.length) throw new Error('INFLATE');
+            const len = LBASE[li] + bits(LEXT[li]);
+            const ds = decode(hD);
+            if (ds >= DBASE.length) throw new Error('INFLATE');
+            const dist = DBASE[ds] + bits(DEXT[ds]);
+            if (dist > outLen) throw new Error('INFLATE');
+            ensure(len);
+            let src = outLen - dist;
+            for (let i = 0; i < len; i++) out[outLen++] = out[src++];
+          }
+        }
+      } else {
+        throw new Error('INFLATE');
+      }
+      if (last) break;
+    }
+  } catch (e) {
+    throw new Error('INFLATE');
+  }
+  return out.subarray(0, outLen);
+}
+async function pipeDeflate(u8) {
+  if (typeof CompressionStream === 'undefined' || u8.length < 64) return null;
+  try {
+    const cs = new CompressionStream('deflate-raw');
+    const ab = await new Response(new Blob([u8]).stream().pipeThrough(cs)).arrayBuffer();
+    const out = new Uint8Array(ab);
+    return out.length < u8.length ? out : null;
+  } catch (e) { return null; }
+}
+
+class MiniZip {
+  constructor(u8) {
+    this.map = new Map();
+    const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+    let eocd = -1;
+    const from = Math.max(0, u8.length - 66000);
+    for (let i = u8.length - 22; i >= from; i--) {
+      if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+    }
+    if (eocd < 0) throw new Error('NOZIP');
+    const n = dv.getUint16(eocd + 10, true);
+    let off = dv.getUint32(eocd + 16, true);
+    for (let k = 0; k < n; k++) {
+      if (off + 46 > u8.length || dv.getUint32(off, true) !== 0x02014b50) break;
+      const method = dv.getUint16(off + 10, true);
+      const time = dv.getUint16(off + 12, true), date = dv.getUint16(off + 14, true);
+      const crc = dv.getUint32(off + 16, true);
+      const csize = dv.getUint32(off + 20, true), usize = dv.getUint32(off + 24, true);
+      const nl = dv.getUint16(off + 28, true), el = dv.getUint16(off + 30, true), cl = dv.getUint16(off + 32, true);
+      const lho = dv.getUint32(off + 42, true);
+      if (lho + 30 > u8.length) { off += 46 + nl + el + cl; continue; }
+      const name = TD.decode(u8.subarray(off + 46, off + 46 + nl));
+      const lnl = dv.getUint16(lho + 26, true), lel = dv.getUint16(lho + 28, true);
+      const ds = lho + 30 + lnl + lel;
+      this.map.set(name, { name, method, time, date, crc,
+        data: u8.subarray(ds, ds + csize), csize, usize });
+      off += 46 + nl + el + cl;
+    }
+    if (!this.map.size) throw new Error('NOZIP');
+  }
+  has(n) { return this.map.has(n); }
+  async bytes(n) {
+    const e = this.map.get(n);
+    if (!e) return null;
+    if (e.method === 0) return e.data.slice();
+    if (e.method !== 8) throw new Error('COMP:' + e.method);
+    return await pipeInflate(e.data);
+  }
+  async text(n) { const b = await this.bytes(n); return b ? TD.decode(b) : null; }
+  /* 生成新 zip：overrides 里是 name → string|Uint8Array，其余条目沿用原始压缩数据 */
+  async rebuild(overrides) {
+    const items = [];
+    for (const e of this.map.values()) {
+      const o = overrides.get(e.name);
+      if (o === undefined) {
+        items.push({ name: e.name, method: e.method, time: e.time, date: e.date, crc: e.crc, usize: e.usize, data: e.data });
+        continue;
+      }
+      const u8 = typeof o === 'string' ? U8.encode(o) : o;
+      const z = await pipeDeflate(u8);
+      items.push(z
+        ? { name: e.name, method: 8, time: e.time, date: e.date, crc: crc32(u8), usize: u8.length, data: z }
+        : { name: e.name, method: 0, time: e.time, date: e.date, crc: crc32(u8), usize: u8.length, data: u8 });
+    }
+    for (const [name, o] of overrides) {
+      if (this.map.has(name)) continue;
+      const u8 = typeof o === 'string' ? U8.encode(o) : o;
+      items.push({ name, method: 0, time: 0, date: 0x21, crc: crc32(u8), usize: u8.length, data: u8 });
+    }
+    return writeZip(items);
+  }
+}
+
+function writeZip(items) {
+  const parts = [];
+  const central = [];
+  let offset = 0;
+  for (const it of items) {
+    const name = U8.encode(it.name);
+    const lh = new Uint8Array(30 + name.length);
+    const dv = new DataView(lh.buffer);
+    dv.setUint32(0, 0x04034b50, true); dv.setUint16(4, 20, true); dv.setUint16(6, 0x0800, true);
+    dv.setUint16(8, it.method, true); dv.setUint16(10, it.time, true); dv.setUint16(12, it.date, true);
+    dv.setUint32(14, it.crc, true); dv.setUint32(18, it.data.length, true); dv.setUint32(22, it.usize, true);
+    dv.setUint16(26, name.length, true); dv.setUint16(28, 0, true);
+    lh.set(name, 30);
+    parts.push(lh); parts.push(it.data);
+    central.push({ it, name, offset });
+    offset += lh.length + it.data.length;
+  }
+  let cdSize = 0;
+  const cdParts = [];
+  for (const c of central) {
+    const b = new Uint8Array(46 + c.name.length);
+    const dv = new DataView(b.buffer);
+    dv.setUint32(0, 0x02014b50, true); dv.setUint16(4, 20, true); dv.setUint16(6, 20, true);
+    dv.setUint16(8, 0x0800, true); dv.setUint16(10, c.it.method, true);
+    dv.setUint16(12, c.it.time, true); dv.setUint16(14, c.it.date, true);
+    dv.setUint32(16, c.it.crc, true); dv.setUint32(20, c.it.data.length, true); dv.setUint32(24, c.it.usize, true);
+    dv.setUint16(28, c.name.length, true);
+    dv.setUint32(42, c.offset, true);
+    b.set(c.name, 46);
+    cdParts.push(b); cdSize += b.length;
+  }
+  const eocd = new Uint8Array(22);
+  const dv = new DataView(eocd.buffer);
+  dv.setUint32(0, 0x06054b50, true);
+  dv.setUint16(8, central.length, true); dv.setUint16(10, central.length, true);
+  dv.setUint32(12, cdSize, true); dv.setUint32(16, offset, true);
+
+  let total = 22;
+  for (const a of parts) total += a.length;
+  for (const a of cdParts) total += a.length;
+  const out = new Uint8Array(total);
+  let p = 0;
+  for (const a of parts) { out.set(a, p); p += a.length; }
+  for (const a of cdParts) { out.set(a, p); p += a.length; }
+  out.set(eocd, p);
+  return out;
+}
+</script>
+<style>
+  :root {
+    --bg: #f7f7f5; --card: #ffffff; --line: #e3e2dd; --line-strong: #cfcdc6;
+    --text: #23221f; --text-2: #6b6a65; --text-3: #9a9892;
+    --accent: #35507a; --accent-soft: #eaeff6;
+    --warn: #8a5a12; --warn-soft: #fbf1de;
+    --err: #94332f; --err-soft: #fbeceb;
+    --ok: #2f6b4f; --ok-soft: #e6f1ea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 80px; background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 14px; line-height: 1.65;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+  .sub { color: var(--text-2); font-size: 13px; margin-bottom: 24px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 14px; font-weight: 600; margin: 0 0 12px; display: flex; align-items: center; justify-content: space-between; }
+  .card h2 .hint { font-weight: 400; font-size: 12px; color: var(--text-3); }
+  .drop { border: 1.5px dashed var(--line-strong); border-radius: 8px; padding: 24px; text-align: center; color: var(--text-2); cursor: pointer; }
+  .drop:hover, .drop.over { background: var(--accent-soft); border-color: var(--accent); }
+  .drop strong { color: var(--accent); }
+  .demo { margin-top: 10px; font-size: 12.5px; color: var(--text-2); text-align: center; }
+  .demo button { font-size: 12.5px; padding: 4px 12px; }
+  .drop.disabled { border-color: var(--err); background: var(--err-soft); color: var(--text-2); cursor: not-allowed; }
+  .drop.disabled strong { color: var(--err); }
+  .meta { margin-top: 12px; font-size: 13px; color: var(--text-2); }
+  .meta span { margin-right: 18px; }
+  button { font: inherit; font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--line-strong); background: #fff; color: var(--text); cursor: pointer; }
+  button:hover { background: #f0efeb; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { background: #2b4165; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.mini { padding: 2px 9px; font-size: 12px; }
+  textarea {
+    width: 100%; min-height: 110px; font: inherit; font-size: 13px; line-height: 1.6;
+    border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px 12px; resize: vertical; color: var(--text);
+  }
+  input[type=text], input[type=password] {
+    font: inherit; font-size: 13px; padding: 5px 8px; border: 1px solid var(--line-strong); border-radius: 6px; width: 100%; color: var(--text);
+  }
+  .rule-group { margin-bottom: 6px; }
+  .rule-group > .gname { font-size: 13px; font-weight: 600; padding: 8px 0 4px; border-top: 1px solid var(--line); margin-top: 6px; }
+  .rule-group:first-child > .gname { border-top: none; margin-top: 0; }
+  .rule { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 13px; color: var(--text-2); }
+  .rule label { flex: 1; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+  .rule select { font: inherit; font-size: 12px; padding: 3px 6px; border: 1px solid var(--line-strong); border-radius: 5px; background: #fff; color: var(--text); max-width: 220px; }
+  .rule .exp { color: var(--text-3); font-size: 12px; }
+  .stats { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 110px; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+  .stat .n { font-size: 22px; font-weight: 600; }
+  .stat .l { font-size: 12px; color: var(--text-2); }
+  .stat.e .n { color: var(--err); }
+  .stat.w .n { color: var(--warn); }
+  .stat.f .n { color: var(--ok); }
+  .issue { border: 1px solid var(--line); border-left: 3px solid var(--line-strong); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
+  .issue.error { border-left-color: var(--err); background: var(--err-soft); }
+  .issue.warn { border-left-color: var(--warn); background: var(--warn-soft); }
+  .issue .top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .issue .name { font-weight: 600; font-size: 13px; }
+  .issue .pos { font-size: 12px; color: var(--text-3); }
+  .issue .val { font-size: 12px; }
+  .issue .val .c { color: var(--err); }
+  .issue .snip { margin-top: 6px; font-size: 12px; color: var(--text-2); background: rgba(255,255,255,.7); border-radius: 4px; padding: 6px 8px; white-space: pre-wrap; word-break: break-all; }
+  .issue .act { margin-top: 8px; display: flex; gap: 8px; align-items: center; }
+  .done { color: var(--text-3); font-size: 12px; }
+  .empty { color: var(--text-3); font-size: 13px; padding: 8px 0; }
+  .foot { color: var(--text-3); font-size: 12px; margin-top: 20px; }
+  .hidden { display: none; }
+  .grouphead { display: flex; align-items: center; gap: 8px; margin: 16px 0 8px; font-size: 13px; font-weight: 600; }
+  .grouphead .cnt { font-weight: 400; color: var(--text-3); font-size: 12px; }
+  .cand { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 7px; font-size: 13px; }
+  .cand .l1 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .cand .l1 .nm { font-weight: 600; }
+  .cand .l1 .vv { color: var(--accent); }
+  .cand .ev { font-size: 12px; color: var(--text-3); margin-top: 3px; background: #faf9f6; border-radius: 4px; padding: 4px 6px; word-break: break-all; }
+  .conf { font-size: 11px; padding: 1px 6px; border-radius: 10px; border: 1px solid var(--line-strong); color: var(--text-2); }
+  .conf.hi { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+  .conf.lo { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+  .step { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+  .stepn { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; background: var(--text-3); color: #fff; font-size: 11px; line-height: 18px; text-align: center; }
+  .note { font-size: 12px; color: var(--text-3); }
+  .tipped { position: relative; display: inline-flex; }
+  .tipped::after {
+    content: attr(data-tip);
+    position: absolute; left: 0; bottom: calc(100% + 8px);
+    width: 272px; padding: 9px 11px; border-radius: 8px;
+    background: #2c2c2a; color: #fff; font-size: 12px; line-height: 1.6;
+    white-space: pre-line; text-align: left;
+    opacity: 0; visibility: hidden; transition: opacity .12s;
+    pointer-events: none; z-index: 60;
+  }
+  .tipped:hover::after, .tipped:focus-within::after { opacity: 1; visibility: visible; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .fld { font-size: 12px; color: var(--text-2); }
+  .fld span { display: block; margin-bottom: 3px; }
+  .bar { background: var(--ok-soft); border: 1px solid var(--ok); color: var(--ok); border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; }
+  .bar.bad { background: var(--err-soft); border-color: var(--err); color: var(--err); }
+  /* 预览 */
+  .pvhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .pvhead .t { font-size: 13px; font-weight: 600; }
+  .pvhead .r { font-size: 12px; color: var(--text-3); }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden; }
+  .seg button { border: none; border-radius: 0; padding: 4px 11px; font-size: 12px; background: #fff; }
+  .seg button.on { background: var(--accent); color: #fff; }
+  .pv {
+    max-height: 460px; overflow: auto; background: #fdfdfb; border: 1px solid var(--line);
+    border-radius: 8px; padding: 14px 16px; margin-top: 10px;
+  }
+  .pv .p { position: relative; padding: 3px 8px 3px 52px; border-left: 3px solid transparent; border-radius: 4px; }
+  .pv .p:hover { background: #f4f3ef; }
+  .pv .p .idx {
+    position: absolute; left: 0; top: 4px; width: 40px; text-align: right;
+    font-size: 11px; color: var(--text-3); font-variant-numeric: tabular-nums; user-select: none;
+  }
+  .pv .p.h1 { font-weight: 700; font-size: 16px; margin-top: 10px; }
+  .pv .p.h2 { font-weight: 600; font-size: 15px; margin-top: 8px; }
+  .pv .p.h3 { font-weight: 600; }
+  .pv .p.ref { color: var(--text-2); font-size: 13px; }
+  .pv .p.empty { color: var(--text-3); font-style: italic; }
+  .pv .p.bad-e { border-left-color: var(--err); background: var(--err-soft); }
+  .pv .p.bad-w { border-left-color: var(--warn); background: var(--warn-soft); }
+  .pv .p .why { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+  .pv .p.flash { background: #fff3c4; }
+  .pv .more { text-align: center; padding: 10px; color: var(--text-2); font-size: 12px; }
+  .pv .more button { font-size: 12px; padding: 4px 12px; }
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+    background: #23221f; color: #fff; font-size: 13px; padding: 11px 18px; border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.22); z-index: 99; max-width: 78vw; line-height: 1.6;
+  }
+  .toast.bad { background: var(--err); }
+  .perf { margin-left: 4px; font-size: 12px; color: var(--text-3); border: 1px solid var(--line); border-radius: 10px; padding: 0 8px; cursor: help; }
+  .busy { color: var(--accent); }
+  .busy::after { content: ''; display: inline-block; width: 12px; text-align: left; animation: dots 1.2s steps(4, end) infinite; }
+  @keyframes dots { 0% { content: ''; } 25% { content: '·'; } 50% { content: '··'; } 75% { content: '···'; } }
+  .err { color: var(--err); }
+  button.danger { border-color: var(--err); color: var(--err); }
+  button.danger:hover { background: var(--err-soft); }
+  .docbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 9px; }
+  .docbar.hidden { display: none; }
+  /* 报告弹窗 */
+  .mask { position: fixed; inset: 0; background: rgba(30,29,26,.42); z-index: 120; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  /* 必须写在 .mask 之后：.hidden 与 .mask 同优先级，靠后者会覆盖掉 display:none，
+     导致遮罩始终盖住整页并吞掉所有点击 */
+  .mask.hidden { display: none; }
+  .modal { background: #fff; border-radius: 10px; width: min(780px, 100%); max-height: 86vh; display: flex; flex-direction: column; box-shadow: 0 18px 50px rgba(0,0,0,.24); }
+  .modal .mh { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .modal .mh .t { font-size: 15px; font-weight: 600; }
+  .modal .mbody { overflow: auto; padding: 4px 18px 14px; }
+  .modal .mbody pre {
+    margin: 0; white-space: pre-wrap; word-break: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; line-height: 1.75; color: var(--text-2);
+  }
+  .modal .mf { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; padding: 12px 18px; border-top: 1px solid var(--line); background: #faf9f6; border-radius: 0 0 10px 10px; }
+  /* 兜底：.hidden 必须始终生效。放在样式表最后，避免任何后写的 display 规则把它覆盖 */
+  .hidden { display: none !important; }
+</style>
+</head>
+<body data-page-node-id="0J6mHNAxM274d366hkTs3Y">
+<div class="wrap" data-page-node-id="WpBfQ8JEXyFRqAra2c2XAL">
+  <h1 data-page-node-id="4A5e3Gw00SAb7SgkaYJYJk">毕业论文格式校验工具</h1>
+  <div class="sub" data-page-node-id="IWSm3LOaPZDLzyoUfcKSYf">上传 docx 论文，按国内高校通用规范校验格式，并可一键或逐条修正。全部在本地浏览器内完成，论文不会离开你的电脑。</div>
+
+  <div class="card" data-page-node-id="o4jRzpb4Ylt8ixOSaBtGLd">
+    <h2 data-page-node-id="kQjPJNwzrPoc2ESqQmGhDf">第一步　上传论文 <span class="hint" data-page-node-id="eRU9fcxu5B3mCGnVOTlUmi">仅支持 docx</span></h2>
+    <div class="drop" id="drop" data-page-node-id="8ebrn3bRzcdjGQIrWDRGwc">点击选择，或把 <strong data-page-node-id="UmgjzHdZtAYcD2c6S3NRGH">.docx</strong> 文件拖到这里</div>
+    <input type="file" id="file" accept=".docx" class="hidden" data-page-node-id="q0srkDEcKuYfAmJS905iat">
+    <div class="demo" id="demoRow">手边没有论文？ <button id="useDemo" class="mini">加载示例论文（内含 11 处典型格式问题）</button></div>
+    <div class="meta" id="meta" data-page-node-id="s790IZXzjFsbcRUKWyFI2o"></div>
+    <div class="docbar hidden" id="docBar">
+      <button id="removeDoc" class="mini danger">移除这篇文档</button>
+      <span class="note">传错了点这里换一篇。文档只存在于当前页面，移除后本机不留任何缓存。</span>
+    </div>
+  </div>
+
+  <div class="card hidden" id="previewCard">
+    <div class="pvhead">
+      <span class="t">论文内容预览</span>
+      <div class="r">
+        <span class="seg">
+          <button id="pvAll" class="on">全部段落</button>
+          <button id="pvBad">只看有问题的</button>
+        </span>
+      </div>
+    </div>
+    <div class="r" id="pvMeta" style="font-size:12px;color:var(--text-3);margin-bottom:6px;"></div>
+    <div class="pv" id="pv"></div>
+  </div>
+
+  <div class="card" data-page-node-id="dtqb7VqcHICFHCTRBE4F2F">
+    <h2 data-page-node-id="l5Cr0arEJXu21ibBe8xvc5">第二步　从本校规范抽取规则（可选） <span class="hint" data-page-node-id="Cx4OKZJ06zA6T74iy03P2k">不填也能用，默认走通用规范</span></h2>
+    <textarea id="specText" placeholder="把学校《毕业论文撰写规范》里的格式要求文字粘贴到这里。例如：&#10;正文：宋体小四，1.5 倍行距，首行缩进 2 字符，两端对齐。&#10;一级标题：黑体三号，居中。&#10;页边距：上 2.5cm，下 2.5cm，左 3cm，右 3cm。"></textarea>
+    <div class="step" data-page-node-id="WaQqSk57PmIDU6SHWcPZhT">
+      <span class="stepn" data-page-node-id="stp1n">1</span>
+      <button id="pickSpec" data-page-node-id="p0T0x3So5zllxi4fd9s5SA">上传规范文件（txt/docx）</button>
+      <span class="note" data-page-node-id="tWCPf09tjD8V2bcsJignIA">或直接把文字粘贴到上面的框里</span>
+      <input type="file" id="specFile" accept=".txt,.md,.docx" class="hidden" data-page-node-id="VBfR7ESsyegBqlJp6kGkpd">
+    </div>
+    <div class="step" data-page-node-id="stp2row">
+      <span class="stepn" data-page-node-id="stp2n">2</span>
+      <span class="note" data-page-node-id="stp2lbl">材料准备好后，选一种方式抽取：</span>
+      <span class="tipped" data-page-node-id="tip1" data-tip="本地正则匹配，不联网、不消耗 token，免费即时。&#10;只认常见写法（如「宋体小四」「1.5 倍行距」），&#10;表格、图片或特殊表述可能漏抽，漏了再用大模型补。"><button id="extract" data-page-node-id="wcAsdnn7Hv0lnR47yRaIV2">本地抽取规则</button></span>
+      <span class="tipped" data-page-node-id="tip2" data-tip="调用你自己填的大模型接口来理解规范原文，各种表述都能读懂。&#10;需要联网，会消耗 token（通常几分钱以内）。&#10;只发送规范文字，不上传论文正文。&#10;首次点击会展开配置框。"><button id="extractLLM" data-page-node-id="ZaJfWEvz2SST3B1N1rl8XO">用大模型抽取</button></span>
+      <span class="note" data-page-node-id="stp2r">结果需你逐条确认后才生效</span>
+    </div>
+    <div id="llmCfg" class="hidden" style="margin-top:12px;border-top:1px solid var(--line);padding-top:12px;" data-page-node-id="6AWys2o02hQIleI4kYuwUL">
+      <div class="grid3" data-page-node-id="2SfwFjqqP9wTofd1XJaZNt">
+        <div class="fld" data-page-node-id="tuWIu9LfJbFO3bkcKvpG4n"><span data-page-node-id="zAMLoaIP0RKZ37lA5WYcMF">接口地址</span><input type="text" id="llmUrl" placeholder="https://api.xxx.com/v1/chat/completions" data-page-node-id="vWgHx9TPsCIiA4sapNirJI"></div>
+        <div class="fld" data-page-node-id="1k1cJImuMN6sTQ2RLfF1LW"><span data-page-node-id="1mNnG7p3hCsArlePkbeBWA">密钥</span><input type="password" id="llmKey" placeholder="sk-..." data-page-node-id="mfPcce54wccUiAe29BfLC9"></div>
+        <div class="fld" data-page-node-id="5DnFicYVTH5PPuyMtIJtdd"><span data-page-node-id="ERhDqmq4MOqnLQS2izvTLw">模型名</span><input type="text" id="llmModel" placeholder="gpt-4o-mini" data-page-node-id="CnLpOGFRHs1zbAFxDaJexb"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text-3);margin-top:6px" data-page-node-id="AoDNUc9ztxGp9Ty8mvUSPu">密钥只保存在本机浏览器，请求由你的电脑直接发出。</div>
+    </div>
+    <div id="cands" style="margin-top:14px;" data-page-node-id="DGnTlaVwNiE5LA4qCovbhQ"></div>
+  </div>
+
+  <div class="card" data-page-node-id="qZIehtXzmOim4QgJCH1zqe">
+    <h2 data-page-node-id="i3hGk9mqjjnCceTC0TInhx">第三步　检查项 <span class="hint" data-page-node-id="5SoRBcwkfC13C7q1xZ2afF">可逐条开关与调整期望值</span></h2>
+    <div id="rules" data-page-node-id="GXEyF7rTEhIMhoirqoeczR"></div>
+    <div class="row" data-page-node-id="L4nbjS6DdkG9Niz5gjidEy">
+      <button class="primary" id="run" disabled data-page-node-id="6Y4IrXrrzg4CQ1FdjscxsZ">开始检查</button>
+      <button id="reset" data-page-node-id="GEqQzSsH2P18EPgaRohyRo">恢复默认</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="resultCard" data-page-node-id="x4oazpNg3Rx2gUEXs5QL8l">
+    <h2 data-page-node-id="hgM87vNcb4i6SoyfhAGd13">检查结果 <span class="hint" id="resultHint" data-page-node-id="1gO8iBFZKLpIoV7sCheNpt"></span></h2>
+    <div id="fixBar" class="bar hidden" data-page-node-id="iA8DU75YWfLK8EC4Qbx4G8"></div>
+    <div class="stats" id="stats" data-page-node-id="Cf6bqygwOi5AhtJfyokyr5"></div>
+    <div id="issues" style="margin-top:16px;" data-page-node-id="qGBJDwEKdQaBdRVcHYHqwP"></div>
+    <div class="row" style="border-top:1px solid var(--line);padding-top:14px;margin-top:16px;" data-page-node-id="6XH8smCIfuzWIIod4KI0p5">
+      <button class="primary" id="fixAll" data-page-node-id="dVbZaB9gzG9s9GyVYN74CV">一键修正全部可自动修正项</button>
+      <button id="download" disabled data-page-node-id="84mwdIIlm7od0v2zllcHa9">下载修正后的文档</button>
+      <span class="tipped" data-tip="生成一份本次检查的文字记录：改了哪些、还剩哪些、用的是什么规范参数。&#10;可用于交导师、自查留档，或贴进论文修改说明。&#10;点开后可先预览、复制，再决定是否下载。"><button id="export" data-page-node-id="2l8j5ytlNnRuFMEmRfxtVW">查看 / 导出检查报告</button></span>
+    </div>
+  </div>
+
+  <div class="mask hidden" id="rptMask">
+    <div class="modal">
+      <div class="mh">
+        <span class="t">格式检查报告</span>
+        <button id="rptClose" class="mini">关闭</button>
+      </div>
+      <div class="mbody"><pre id="rptText"></pre></div>
+      <div class="mf">
+        <button id="rptCopy" class="primary">复制全文</button>
+        <button id="rptDlMd">下载 .md</button>
+        <button id="rptDlTxt">下载 .txt</button>
+        <span class="note">报告只含问题清单与修正记录，不含论文正文全文。</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div class="foot" data-page-node-id="F3XB8khYL6eEFPdZbfnUKd">
+    修正说明：自动修正只改格式属性与标点空格，不会改写你的论述内容；参考文献格式不完整需你手动补全。表格内文字暂不纳入正文检查。建议先备份原文件。
+  </div>
+</div>
+
+<script>
+const WNS = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+const tag = (el, n) => el.getElementsByTagNameNS(WNS, n);
+const at = (el, n) => el.getAttributeNS(WNS, n);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const SIZE_TABLE = [['初号',42],['小初',36],['一号',26],['小一',24],['二号',22],['小二',18],['三号',16],['小三',15],['四号',14],['小四',12],['五号',10.5],['小五',9],['六号',7.5]];
+const SIZE_NAMES = SIZE_TABLE.map(x => x[0]);
+const sizeName = pt => { let b = null, d = 1e9; for (const [n, v] of SIZE_TABLE) { const q = Math.abs(v - pt); if (q < d) { d = q; b = n; } } return d < 0.3 ? b : (Math.round(pt * 10) / 10 + '磅'); };
+const sizePt = name => { const f = SIZE_TABLE.find(x => x[0] === name); return f ? f[1] : parseFloat(name); };
+const twipsToCm = t => Math.round(t / 567 * 100) / 100;
+const cmToTwips = c => Math.round(c * 567);
+
+const CJK_RE = /[\u4e00-\u9fa5]/g;
+const cjkCount = s => (s.match(CJK_RE) || []).length;
+const isRef = s => /^\s*\[\d+\]/.test(s);
+const REF_TYPES = /\[(M|J|D|C|N|P|S|R|G|EB\/OL|OL|DB|CP|Z)\]/i;
+const ALIGN_CN = { both: '两端对齐', left: '左对齐', center: '居中', right: '右对齐' };
+const NUMFMT_CN = { decimal: '阿拉伯数字', lowerRoman: '小写罗马数字', upperRoman: '大写罗马数字' };
+
+/* ================= 解析 ================= */
+function pickRPr(rPr) {
+  if (!rPr) return {};
+  const f = tag(rPr, 'rFonts')[0], sz = tag(rPr, 'sz')[0];
+  return { eastAsia: (f && at(f, 'eastAsia')) || null, ascii: (f && at(f, 'ascii')) || null,
+    sizeHalf: sz ? parseInt(at(sz, 'val'), 10) : null, bold: !!tag(rPr, 'b')[0] };
+}
+function pickPPr(pPr) {
+  if (!pPr) return {};
+  const sp = tag(pPr, 'spacing')[0], ind = tag(pPr, 'ind')[0], jc = tag(pPr, 'jc')[0], ol = tag(pPr, 'outlineLvl')[0], st = tag(pPr, 'pStyle')[0];
+  return { styleId: st ? at(st, 'val') : null,
+    line: (sp && at(sp, 'line')) ? parseInt(at(sp, 'line'), 10) : null,
+    lineRule: (sp && at(sp, 'lineRule')) || null,
+    before: (sp && at(sp, 'before')) ? parseInt(at(sp, 'before'), 10) : null,
+    after: (sp && at(sp, 'after')) ? parseInt(at(sp, 'after'), 10) : null,
+    firstLine: (ind && at(ind, 'firstLine')) ? parseInt(at(ind, 'firstLine'), 10) : null,
+    firstLineChars: (ind && at(ind, 'firstLineChars')) ? parseInt(at(ind, 'firstLineChars'), 10) : null,
+    jc: jc ? at(jc, 'val') : null, outlineLvl: ol ? parseInt(at(ol, 'val'), 10) : null };
+}
+function parseStyles(xml) {
+  const map = {}; if (!xml) return map;
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  for (const s of doc.getElementsByTagNameNS(WNS, 'style')) {
+    const id = at(s, 'styleId'), nm = tag(s, 'name')[0];
+    map[id] = { name: nm ? at(nm, 'val') : id, pPr: tag(s, 'pPr')[0] || null, rPr: tag(s, 'rPr')[0] || null };
+  }
+  return map;
+}
+function parseDocument(doc, styles) {
+  const body = doc.getElementsByTagNameNS(WNS, 'body')[0];
+  const normal = styles['Normal'] || { pPr: null, rPr: null };
+  const paras = [];
+  for (const p of Array.from(body.childNodes).filter(n => n.nodeType === 1 && n.localName === 'p')) {
+    let text = '';
+    for (const t of p.getElementsByTagNameNS(WNS, 't')) text += t.textContent;
+    const pPr = tag(p, 'pPr')[0] || null;
+    const dp = pickPPr(pPr);
+    const dr = pickRPr(pPr ? tag(pPr, 'rPr')[0] : null);
+    const runs = p.getElementsByTagNameNS(WNS, 'r');
+    const rr = runs.length ? pickRPr(tag(runs[0], 'rPr')[0]) : {};
+    const sd = (dp.styleId && styles[dp.styleId]) || normal;
+    const sp = pickPPr(sd.pPr), sr = pickRPr(sd.rPr);
+    const mg = (a, b, c) => (a !== null && a !== undefined) ? a : ((b !== null && b !== undefined) ? b : c);
+    const sizeHalf = mg(dr.sizeHalf, rr.sizeHalf, sr.sizeHalf);
+    const pt = sizeHalf ? sizeHalf / 2 : null;
+    let lineMultiple = null, linePt = null;
+    const line = mg(dp.line, sp.line, null), rule = mg(dp.lineRule, sp.lineRule, 'auto');
+    if (line !== null) { if (rule === 'exact' || rule === 'atLeast') linePt = line / 20; else lineMultiple = Math.round(line / 240 * 100) / 100; }
+    let flc = mg(dp.firstLineChars, sp.firstLineChars, null);
+    if (flc === null) { const fl = mg(dp.firstLine, sp.firstLine, null); if (fl !== null && pt) flc = Math.round(fl / 20 / pt * 100) / 100; else if (fl === 0) flc = 0; }
+    else flc = flc / 100;
+    const styleName = sd.name || dp.styleId || '正文';
+    let headingLevel = null;
+    if (dp.outlineLvl !== null && dp.outlineLvl !== undefined) headingLevel = dp.outlineLvl + 1;
+    else { const m = /heading\s*(\d)/i.exec(styleName || '') || /^Heading(\d)$/i.exec(dp.styleId || ''); if (m) headingLevel = parseInt(m[1], 10); }
+    paras.push({ index: paras.length, node: p, text, styleId: dp.styleId, styleName, headingLevel,
+      fontEastAsia: mg(dr.eastAsia, rr.eastAsia, sr.eastAsia), fontAscii: mg(dr.ascii, rr.ascii, sr.ascii),
+      sizePt: pt, bold: dr.bold || rr.bold || sr.bold, lineMultiple, linePt, firstLineChars: flc,
+      align: mg(dp.jc, sp.jc, null), before: mg(dp.before, sp.before, null), after: mg(dp.after, sp.after, null) });
+  }
+  let page = null;
+  const sect = body.getElementsByTagNameNS(WNS, 'sectPr')[0];
+  if (sect) {
+    const sz = tag(sect, 'pgSz')[0], mar = tag(sect, 'pgMar')[0], num = tag(sect, 'pgNumType')[0];
+    page = { node: sect, w: sz ? parseInt(at(sz, 'w'), 10) : null, h: sz ? parseInt(at(sz, 'h'), 10) : null,
+      top: mar ? parseInt(at(mar, 'top'), 10) : null, bottom: mar ? parseInt(at(mar, 'bottom'), 10) : null,
+      left: mar ? parseInt(at(mar, 'left'), 10) : null, right: mar ? parseInt(at(mar, 'right'), 10) : null,
+      numFmt: num ? at(num, 'fmt') : null };
+  }
+  return { paras, page };
+}
+
+/* ================= 规则 ================= */
+const RULES = [
+  { id: 'pageA4', group: '页面设置', name: '纸张为 A4', on: true, exp: null,
+    run(c) { if (!c.page || !c.page.w) return [];
+      if (Math.abs(c.page.w - 11906) > 60 || Math.abs(c.page.h - 16838) > 60)
+        return [{ level: 'error', msg: '纸张尺寸不是 A4', cur: `${twipsToCm(c.page.w)} × ${twipsToCm(c.page.h)} cm`, exp: '21 × 29.7 cm', fix: { kind: 'pageSize', w: 11906, h: 16838 } }];
+      return []; } },
+
+  { id: 'margin', group: '页面设置', name: '页边距符合规范', on: true, exp: 'default',
+    opts: { default: '上2.54 下2.54 左3.17 右3.17', loose: '上下2.54 左右2.5' },
+    target() { return this.exp === 'loose' ? { top: 1440, bottom: 1440, left: 1418, right: 1418 } : { top: 1440, bottom: 1440, left: 1797, right: 1797 }; },
+    run(c) { if (!c.page || c.page.left === null) return [];
+      const t = this.target(), bad = [];
+      for (const k of ['top', 'bottom', 'left', 'right'])
+        if (Math.abs(c.page[k] - t[k]) > 40) bad.push(`${({top:'上',bottom:'下',left:'左',right:'右'})[k]}边距 ${twipsToCm(c.page[k])}cm → ${twipsToCm(t[k])}cm`);
+      return bad.length ? [{ level: 'warn', msg: '页边距与规范不符', cur: bad.join('；'), exp: this.opts[this.exp] || '自定义', fix: { kind: 'margin', ...t } }] : []; } },
+
+  { id: 'pageNum', group: '页面设置', name: '页码格式为阿拉伯数字', on: true, exp: 'decimal',
+    opts: { decimal: '阿拉伯数字', lowerRoman: '小写罗马数字' },
+    run(c) { if (!c.page || !c.page.numFmt) return [];
+      if (c.page.numFmt !== this.exp) return [{ level: 'warn', msg: '页码格式不符', cur: NUMFMT_CN[c.page.numFmt] || c.page.numFmt, exp: this.opts[this.exp], fix: { kind: 'pageNum', fmt: this.exp } }];
+      return []; } },
+
+  { id: 'bodyFont', group: '正文', name: '正文中文字体', on: true, exp: '宋体', opts: ['宋体', '仿宋', '黑体', '楷体'],
+    run(c) { const out = []; for (const p of c.body) if (p.fontEastAsia && !p.fontEastAsia.includes(this.exp))
+        out.push({ para: p, level: 'error', msg: `正文中文字体为「${p.fontEastAsia}」`, cur: p.fontEastAsia, exp: this.exp, fix: { kind: 'font', eastAsia: this.exp } }); return out; } },
+
+  { id: 'bodySize', group: '正文', name: '正文字号', on: true, exp: '小四', opts: ['小四', '四号', '五号'],
+    run(c) { const want = sizePt(this.exp), out = []; for (const p of c.body) if (p.sizePt && Math.abs(p.sizePt - want) > 0.3)
+        out.push({ para: p, level: 'error', msg: `正文字号为 ${sizeName(p.sizePt)}`, cur: sizeName(p.sizePt), exp: this.exp, fix: { kind: 'size', halfPt: Math.round(want * 2) } }); return out; } },
+
+  { id: 'bodyLine', group: '正文', name: '正文行距', on: true, exp: '1.5', opts: { '1.5': '1.5 倍', '1.25': '1.25 倍', '2': '2 倍' },
+    run(c) { const want = parseFloat(this.exp), out = []; for (const p of c.body) {
+        const v = p.lineMultiple !== null ? p.lineMultiple : (p.linePt ? Math.round(p.linePt / (p.sizePt || 12) * 100) / 100 : 1);
+        if (Math.abs(v - want) > 0.06) out.push({ para: p, level: 'error', msg: `正文行距约 ${v} 倍`, cur: `${v} 倍`, exp: `${want} 倍`, fix: { kind: 'line', multiple: want } });
+      } return out; } },
+
+  { id: 'bodyIndent', group: '正文', name: '正文首行缩进两字符', on: true, exp: '2', opts: { '2': '2 字符', '0': '不缩进' },
+    run(c) { const want = parseFloat(this.exp), out = []; for (const p of c.body) {
+        const v = p.firstLineChars === null ? 0 : p.firstLineChars;
+        if (Math.abs(v - want) > 0.35 && p.text.length > 20)
+          out.push({ para: p, level: 'warn', msg: v < 0.35 ? '正文缺少首行缩进' : `首行缩进约 ${v} 字符`, cur: `${v} 字符`, exp: `${want} 字符`, fix: { kind: 'indent', chars: want, sizePt: p.sizePt || 12 } });
+      } return out; } },
+
+  { id: 'bodyAlign', group: '正文', name: '正文两端对齐', on: true, exp: 'both', opts: { both: '两端对齐', left: '左对齐', center: '居中' },
+    run(c) { const out = []; for (const p of c.body) if (p.align && p.align !== this.exp && p.text.length > 20)
+        out.push({ para: p, level: 'warn', msg: '正文对齐方式不符', cur: ALIGN_CN[p.align] || p.align, exp: this.opts[this.exp], fix: { kind: 'align', val: this.exp } }); return out; } },
+
+  { id: 'h1', group: '标题', name: '一级标题：黑体三号', on: true, exp: '三号', opts: ['三号', '小三', '四号', '二号'],
+    run(c) { const want = sizePt(this.exp), out = []; for (const p of c.head(1)) {
+        if (p.fontEastAsia && !p.fontEastAsia.includes('黑')) out.push({ para: p, level: 'warn', msg: `一级标题字体为「${p.fontEastAsia}」`, cur: p.fontEastAsia, exp: '黑体', fix: { kind: 'font', eastAsia: '黑体' } });
+        if (p.sizePt && Math.abs(p.sizePt - want) > 0.3) out.push({ para: p, level: 'error', msg: `一级标题字号为 ${sizeName(p.sizePt)}`, cur: sizeName(p.sizePt), exp: this.exp, fix: { kind: 'size', halfPt: Math.round(want * 2) } });
+      } return out; } },
+
+  { id: 'h2', group: '标题', name: '二级标题字号', on: true, exp: '小三', opts: ['小三', '四号', '小四'],
+    run(c) { const want = sizePt(this.exp), out = []; for (const p of c.head(2)) if (p.sizePt && Math.abs(p.sizePt - want) > 0.3)
+        out.push({ para: p, level: 'warn', msg: `二级标题字号为 ${sizeName(p.sizePt)}`, cur: sizeName(p.sizePt), exp: this.exp, fix: { kind: 'size', halfPt: Math.round(want * 2) } }); return out; } },
+
+  { id: 'ref', group: '参考文献', name: '参考文献符合 GB/T 7714', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) if (isRef(p.text)) {
+        const hasType = REF_TYPES.test(p.text), hasYear = /\d{4}/.test(p.text), hasDot = (p.text.match(/\./g) || []).length >= 2;
+        if (!hasType || !hasYear || !hasDot) {
+          const miss = []; if (!hasType) miss.push('缺少文献类型标识 [J]/[M]/[D] 等'); if (!hasYear) miss.push('缺少出版年份'); if (!hasDot) miss.push('缺少必要的分隔点号');
+          out.push({ para: p, level: 'error', msg: '参考文献条目格式不完整', cur: miss.join('；'), exp: 'GB/T 7714 著录格式' });
+        }
+      } return out; } },
+
+  { id: 'punctCJK', group: '标点与排版', name: '中文语境不使用半角标点', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) { if (cjkCount(p.text) < 8 || isRef(p.text)) continue;
+        const bad = p.text.match(/[,;:?!()]/g);
+        if (bad) out.push({ para: p, level: 'warn', msg: `出现 ${bad.length} 处半角标点`, cur: [...new Set(bad)].join(' '), exp: '全角标点，；：？！（）', fix: { kind: 'punct', mode: 'toFull' } });
+      } return out; } },
+
+  { id: 'punctEn', group: '标点与排版', name: '英文语境不使用全角标点', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) { if (!/[A-Za-z]{6,}/.test(p.text) || isRef(p.text)) continue;
+        if (cjkCount(p.text) > p.text.replace(/\s/g, '').length * 0.3) continue;
+        const bad = p.text.match(/[，。；：？！（）、]/g);
+        if (bad) out.push({ para: p, level: 'warn', msg: `出现 ${bad.length} 处全角标点`, cur: [...new Set(bad)].join(' '), exp: '半角标点 , . ; : ? ! ( )', fix: { kind: 'punct', mode: 'toHalf' } });
+      } return out; } },
+
+  { id: 'space', group: '标点与排版', name: '中英文之间留有空格', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) { if (isRef(p.text)) continue;
+        const bad = p.text.match(/[\u4e00-\u9fa5][A-Za-z0-9]|[A-Za-z0-9][\u4e00-\u9fa5]/g);
+        if (bad && bad.length >= 1) out.push({ para: p, level: 'warn', msg: `${bad.length} 处中英文之间缺少空格`, cur: bad.slice(0, 4).join(' | '), exp: '中文与英文/数字之间空一格', fix: { kind: 'cnspace' } });
+      } return out; } },
+
+  { id: 'blank', group: '标点与排版', name: '无多余空段落', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) if (!p.text.trim() && p.index > 0)
+        out.push({ para: p, level: 'warn', msg: '存在空段落', cur: '空白', exp: '删除或合并', fix: { kind: 'delete' } }); return out; } },
+
+  { id: 'trim', group: '标点与排版', name: '段落首尾无多余空格', on: true, exp: null,
+    run(c) { const out = []; for (const p of c.paras) if (p.text.length && /^\s|\s$/.test(p.text))
+        out.push({ para: p, level: 'warn', msg: '段落首尾存在空格', cur: '含首尾空白', exp: '删除首尾空格', fix: { kind: 'trim' } }); return out; } }
+];
+const DEFAULTS = RULES.map(r => ({ on: r.on, exp: r.exp }));
+
+/* ================= 修正引擎 ================= */
+const PPR_ORDER = ['pStyle','keepNext','keepLines','pageBreakBefore','framePr','widowControl','numPr','suppressLineNumbers','pBdr','shd','tabs','suppressAutoHyphens','kinsoku','wordWrap','overflowPunct','topLinePunct','autoSpaceDE','autoSpaceDN','bidi','adjustRightInd','snapToGrid','spacing','ind','contextualSpacing','mirrorIndents','suppressOverlap','jc','textDirection','textAlignment','textboxTightWrap','outlineLvl','divId','cnfStyle','rPr','sectPr','pPrChange'];
+const RPR_ORDER = ['rFonts','b','bCs','i','iCs','caps','smallCaps','strike','dstrike','outline','shadow','emboss','imprint','noProof','snapToGrid','vanish','webHidden','color','spacing','w','kern','position','sz','szCs','highlight','u','effect','bdr','shd','fitText','vertAlign','rtl','cs','em','lang','eastAsianLayout','specVanish','oMath'];
+const SECT_ORDER = ['headerReference','footerReference','footnotePr','endnotePr','type','pgSz','pgMar','paperSrc','pgBorders','lnNumType','pgNumType','cols','formProt','vAlign','noEndnote','titlePg','textDirection','bidi','rtlGutter','docGrid','printerSettings','sectPrChange'];
+
+function orderedSet(parent, name, attrs, order) {
+  const doc = parent.ownerDocument;
+  let el = tag(parent, name)[0];
+  if (!el) {
+    el = doc.createElementNS(WNS, 'w:' + name);
+    const idx = order.indexOf(name);
+    let ref = null;
+    for (const sib of Array.from(parent.childNodes)) {
+      if (sib.nodeType !== 1) continue;
+      const si = order.indexOf(sib.localName);
+      if (si > idx) { ref = sib; break; }
+    }
+    if (ref) parent.insertBefore(el, ref); else parent.appendChild(el);
+  }
+  for (const k in attrs) el.setAttributeNS(WNS, k, attrs[k]);
+  return el;
+}
+function ensurePPr(pNode) {
+  let pPr = tag(pNode, 'pPr')[0];
+  if (!pPr) { pPr = pNode.ownerDocument.createElementNS(WNS, 'w:pPr'); pNode.insertBefore(pPr, pNode.firstChild); }
+  return pPr;
+}
+function applyToRuns(pNode, fn) {
+  for (const r of Array.from(pNode.getElementsByTagNameNS(WNS, 'r'))) {
+    if (r.parentNode !== pNode) continue;
+    const rPr = orderedSet(r, 'rPr', {}, RPR_ORDER);
+    fn(rPr);
+  }
+  const pPr = ensurePPr(pNode);
+  fn(orderedSet(pPr, 'rPr', {}, PPR_ORDER));
+}
+const TO_FULL = { ',': '，', ';': '；', ':': '：', '?': '？', '!': '！', '(': '（', ')': '）' };
+const TO_HALF = { '，': ',', '。': '.', '；': ';', '：': ':', '？': '?', '！': '!', '（': '(', '）': ')', '、': ',' };
+
+function applyFix(issue) {
+  const f = issue.fix;
+  if (!f) return false;
+  if (f.kind === 'pageSize' || f.kind === 'margin' || f.kind === 'pageNum') {
+    const sect = LAST.page && LAST.page.node;
+    if (!sect) return false;
+    if (f.kind === 'pageSize') orderedSet(sect, 'pgSz', { w: String(f.w), h: String(f.h) }, SECT_ORDER);
+    if (f.kind === 'margin') orderedSet(sect, 'pgMar', { top: String(f.top), bottom: String(f.bottom), left: String(f.left), right: String(f.right) }, SECT_ORDER);
+    if (f.kind === 'pageNum') orderedSet(sect, 'pgNumType', { fmt: f.fmt }, SECT_ORDER);
+    return true;
+  }
+  const p = issue.para && issue.para.node;
+  if (!p) return false;
+  switch (f.kind) {
+    case 'font': applyToRuns(p, rPr => {
+      const cur = tag(rPr, 'rFonts')[0];
+      orderedSet(rPr, 'rFonts', { eastAsia: f.eastAsia, ascii: (cur && at(cur, 'ascii')) || 'Times New Roman', hAnsi: (cur && at(cur, 'hAnsi')) || 'Times New Roman' }, RPR_ORDER);
+    }); return true;
+    case 'size': applyToRuns(p, rPr => {
+      orderedSet(rPr, 'sz', { val: String(f.halfPt) }, RPR_ORDER);
+      orderedSet(rPr, 'szCs', { val: String(f.halfPt) }, RPR_ORDER);
+    }); return true;
+    case 'line': { const pPr = ensurePPr(p);
+      orderedSet(pPr, 'spacing', { line: String(Math.round(f.multiple * 240)), lineRule: 'auto' }, PPR_ORDER); return true; }
+    case 'indent': { const pPr = ensurePPr(p);
+      orderedSet(pPr, 'ind', { firstLine: String(Math.round(f.chars * (f.sizePt || 12) * 20)), firstLineChars: String(Math.round(f.chars * 100)) }, PPR_ORDER); return true; }
+    case 'align': { const pPr = ensurePPr(p); orderedSet(pPr, 'jc', { val: f.val }, PPR_ORDER); return true; }
+    case 'punct': {
+      const map = f.mode === 'toFull' ? TO_FULL : TO_HALF;
+      for (const t of Array.from(p.getElementsByTagNameNS(WNS, 't'))) {
+        let s = t.textContent;
+        if (f.mode === 'toHalf') {
+          s = s.replace(/[，。；：？！（）、]/g, c => map[c]);
+        } else {
+          s = s.replace(/([\u4e00-\u9fa5])([,;:?!()])/g, (m, a, b) => a + map[b]);
+          s = s.replace(/([,;:?!()])([\u4e00-\u9fa5])/g, (m, a, b) => map[a] + b);
+          s = s.replace(/([\u4e00-\u9fa5])\.(?![A-Za-z0-9])/g, '$1。');
+        }
+        t.textContent = s;
+      } return true; }
+    case 'cnspace': for (const t of Array.from(p.getElementsByTagNameNS(WNS, 't'))) {
+        t.textContent = t.textContent.replace(/([\u4e00-\u9fa5])([A-Za-z0-9])/g, '$1 $2').replace(/([A-Za-z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
+      } return true;
+    case 'trim': for (const t of Array.from(p.getElementsByTagNameNS(WNS, 't'))) t.textContent = t.textContent.replace(/^\s+|\s+$/g, '');
+      return true;
+    case 'delete': if (p.parentNode) { p.parentNode.removeChild(p); return true; } return false;
+  }
+  return false;
+}
+
+/* ================= 状态与执行 ================= */
+let LAST = null;
+let FIXED_COUNT = 0;
+let FIX_LOG = [];          // 已修正记录，写进检查报告
+function buildCtx() {
+  return { paras: LAST.paras, page: LAST.page,
+    body: LAST.paras.filter(p => !p.headingLevel && !isRef(p.text) && p.text.trim()),
+    head: lvl => LAST.paras.filter(p => p.headingLevel === lvl) };
+}
+function collectIssues() {
+  const ctx = buildCtx(), out = [];
+  for (const r of RULES) {
+    if (!r.on) continue;
+    let items = [];
+    try { items = r.run(ctx) || []; } catch (e) { console.error(r.id, e); continue; }
+    for (const it of items) out.push({ rule: r.name, group: r.group, ...it });
+  }
+  return out;
+}
+function runCheck() {
+  if (!LAST) return;
+  _pt = performance.now();
+  const r = collectIssues();   PERF['检查'] = tick();
+  renderResults(r, buildCtx()); PERF['渲染结果'] = tick();
+}
+function issueLabel(it) {
+  const pos = it.para ? `第 ${it.para.index + 1} 段` : '整篇';
+  let cur = it.cur ? String(it.cur).slice(0, 60) : '';
+  if (cur && it.exp && !cur.includes('→')) cur += ' → ' + it.exp;
+  else if (!cur) cur = it.msg || '';
+  return { pos, cur, name: it.rule, level: it.level };
+}
+
+function renderResults(results, ctx) {
+  document.getElementById('resultCard').classList.remove('hidden');
+  const err = results.filter(r => r.level === 'error').length;
+  const warn = results.filter(r => r.level === 'warn').length;
+  const fixable = results.filter(r => r.fix).length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="n">${results.length}</div><div class="l">剩余问题</div></div>
+    <div class="stat e"><div class="n">${err}</div><div class="l">必须修改</div></div>
+    <div class="stat w"><div class="n">${warn}</div><div class="l">建议修改</div></div>
+    <div class="stat f"><div class="n">${fixable}</div><div class="l">可自动修正</div></div>
+    <div class="stat"><div class="n">${ctx.paras.length}</div><div class="l">段落总数</div></div>`;
+  document.getElementById('resultHint').textContent =
+    `正文 ${ctx.body.length} 段，标题 ${ctx.paras.filter(p => p.headingLevel).length} 处，参考文献 ${ctx.paras.filter(p => isRef(p.text)).length} 条`;
+  const bar = document.getElementById('fixBar');
+  if (FIXED_COUNT > 0) { bar.classList.remove('hidden'); bar.textContent = `本次已自动修正 ${FIXED_COUNT} 项。修正只改格式与标点，未改动你的论述内容。可下载查看，或继续处理下方剩余问题。`; }
+  else bar.classList.add('hidden');
+
+  const box = document.getElementById('issues');
+  box.innerHTML = '';
+  if (!results.length) { box.innerHTML = '<div class="empty">未发现格式问题。</div>'; return; }
+  for (const g of [...new Set(results.map(r => r.group))]) {
+    const items = results.filter(r => r.group === g);
+    const h = document.createElement('div'); h.className = 'grouphead';
+    h.innerHTML = `${g} <span class="cnt">${items.length} 项</span>`;
+    box.appendChild(h);
+    items.forEach(it => {
+      const d = document.createElement('div');
+      d.className = `issue ${it.level}`;
+      const pos = it.para ? `第 ${it.para.index + 1} 段` : '整篇';
+      d.innerHTML = `
+        <div class="top">
+          <span class="name">${esc(it.rule)}</span>
+          <span class="pos">${pos}</span>
+          ${it.cur ? `<span class="val">当前 <span class="c">${esc(String(it.cur).slice(0, 80))}</span>　应为 ${esc(it.exp || '—')}</span>` : ''}
+        </div>
+        ${it.msg && it.msg !== it.rule ? `<div class="pos" style="margin-top:2px">${esc(it.msg)}</div>` : ''}
+        ${it.para ? `<div class="snip">${esc(it.para.text.slice(0, 120))}${it.para.text.length > 120 ? '…' : ''}</div>` : ''}
+        <div class="act">${it.fix ? `<button class="mini">修正这一项</button>` : `<span class="done">需手动补全</span>`}${it.para ? `<button class="mini">在原文中定位</button>` : ''}</div>`;
+      const btns = d.querySelectorAll('button');
+      if (it.fix) btns[0].onclick = () => doFix([it]);
+      if (it.para) btns[btns.length - 1].onclick = () => locatePara(it.para.index);
+      box.appendChild(d);
+    });
+  }
+  const _t = performance.now();
+  renderPreview(results);
+  PERF['渲染预览'] = Math.round((performance.now() - _t) * 10) / 10;
+}
+function doFix(issues) {
+  let n = 0;
+  for (const it of issues) {
+    const label = issueLabel(it);
+    if (applyFix(it)) { n++; FIX_LOG.push(label); }
+  }
+  FIXED_COUNT += n;
+  if (n > 0) document.getElementById('download').disabled = false;
+  repaint();
+}
+
+/* ================= 论文内容预览 ================= */
+let PV_MODE = 'all';
+let PV_LIMIT = 300;
+function renderPreview(results) {
+  if (!LAST) return;
+  const card = document.getElementById('previewCard');
+  card.classList.remove('hidden');
+  const badMap = new Map();
+  for (const it of results) {
+    if (!it.para) continue;
+    const k = it.para.index;
+    const cur = badMap.get(k);
+    if (!cur || (it.level === 'error' && cur.level !== 'error')) badMap.set(k, it.level);
+    const arr = badMap.get('why' + k) || [];
+    arr.push(it.msg || it.rule);
+    badMap.set('why' + k, arr);
+  }
+  const paras = LAST.paras;
+  const shown = PV_MODE === 'bad'
+    ? paras.map((p, i) => ({ p, i })).filter(x => badMap.has(x.i))
+    : paras.map((p, i) => ({ p, i })).slice(0, PV_LIMIT);
+  document.getElementById('pvMeta').textContent =
+    `共 ${paras.length} 段，当前显示 ${shown.length} 段；左侧色条标记有问题的段落，鼠标悬停可看原因。`;
+
+  const box = document.getElementById('pv');
+  box.innerHTML = '';
+  for (const { p, i } of shown) {
+    const lv = badMap.get(i);
+    const why = badMap.get('why' + i) || [];
+    const d = document.createElement('div');
+    let cls = 'p';
+    if (p.headingLevel) cls += ' h' + Math.min(p.headingLevel, 3);
+    else if (isRef(p.text)) cls += ' ref';
+    if (!p.text.trim()) cls += ' empty';
+    if (lv === 'error') cls += ' bad-e'; else if (lv === 'warn') cls += ' bad-w';
+    d.className = cls;
+    d.dataset.idx = String(i);
+    d.innerHTML = `<span class="idx">${i + 1}</span>` +
+      (p.text.trim() ? esc(p.text) : '<span style="color:var(--text-3)">（空段落）</span>') +
+      (why.length ? `<div class="why">${esc([...new Set(why)].join('、'))}</div>` : '');
+    box.appendChild(d);
+  }
+  if (PV_MODE === 'all' && paras.length > PV_LIMIT) {
+    const m = document.createElement('div'); m.className = 'more';
+    m.innerHTML = `<div style="margin-bottom:6px">还有 ${paras.length - PV_LIMIT} 段未显示（长文档一次渲染会卡）。</div>`;
+    const b = document.createElement('button'); b.textContent = '继续显示 500 段';
+    b.onclick = () => { PV_LIMIT += 500; renderPreview(collectIssues()); };
+    m.appendChild(b);
+    box.appendChild(m);
+  }
+}
+function locatePara(idx) {
+  const el = document.querySelector(`.pv .p[data-idx="${idx}"]`);
+  if (!el) { PV_MODE = 'all'; PV_LIMIT = Math.max(PV_LIMIT, idx + 50); renderPreview(collectIssues());
+    const el2 = document.querySelector(`.pv .p[data-idx="${idx}"]`); if (el2) flash(el2); return; }
+  flash(el);
+}
+function flash(el) {
+  document.getElementById('previewCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.classList.add('flash');
+  setTimeout(() => el.classList.remove('flash'), 1600);
+}
+function repaint() {
+  const r = parseDocument(LAST.docDom, LAST.styles);
+  LAST.paras = r.paras; LAST.page = r.page;
+  runCheck();
+}
+
+/* ================= 规则抽取 ================= */
+const FONT_WORDS = ['宋体', '仿宋', '黑体', '楷体', 'Times New Roman', '微软雅黑'];
+const splitClauses = text => text.split(/[\n。；;\r]+/).map(s => s.trim()).filter(s => s.length > 1);
+const findIn = (clause, words) => words.find(w => clause.includes(w)) || null;
+function findSize(clause) {
+  for (const n of SIZE_NAMES) if (clause.includes(n)) return n;
+  const m = /(\d+(?:\.\d+)?)\s*(?:磅|pt)/i.exec(clause);
+  return m ? m[1] + '磅' : null;
+}
+function extractLocal(text) {
+  const out = [];
+  const push = (id, value, ev, hi) => out.push({ id, value, evidence: ev.slice(0, 90), conf: hi ? 'hi' : 'lo' });
+  if (/A4/i.test(text)) push('pageA4', null, (/(.{0,20}A4.{0,20})/i.exec(text) || ['A4'])[0], true);
+
+  const mv = {};
+  for (const c of splitClauses(text).concat([text])) {
+    const re = /(上|下|左|右)\s*(?:边距)?\s*[:：]?\s*(\d+(?:\.\d+)?)\s*(?:cm|厘米)?/g;
+    let m;
+    while ((m = re.exec(c))) { const k = ({ 上: 'top', 下: 'bottom', 左: 'left', 右: 'right' })[m[1]]; if (k && mv[k] === undefined) mv[k] = parseFloat(m[2]); }
+  }
+  const allM = /上[^0-9]{0,4}(\d+(?:\.\d+)?)[^0-9]{0,8}下[^0-9]{0,4}(\d+(?:\.\d+)?)[^0-9]{0,8}左[^0-9]{0,4}(\d+(?:\.\d+)?)[^0-9]{0,8}右[^0-9]{0,4}(\d+(?:\.\d+)?)/.exec(text.replace(/\s/g, ''));
+  if (allM) { mv.top = parseFloat(allM[1]); mv.bottom = parseFloat(allM[2]); mv.left = parseFloat(allM[3]); mv.right = parseFloat(allM[4]); }
+  if (Object.keys(mv).length >= 2) {
+    const ev = Object.entries(mv).map(([k, v]) => ({ top: '上', bottom: '下', left: '左', right: '右' })[k] + v + 'cm').join(' ');
+    out.push({ id: 'margin', value: '__custom__', custom: mv, evidence: ev, conf: Object.keys(mv).length >= 4 ? 'hi' : 'lo' });
+  }
+  for (const c of splitClauses(text)) {
+    const t1 = /一级标题|1\s*级标题|章标题|大标题/.test(c);
+    const t2 = /二级标题|2\s*级标题|节标题/.test(c);
+    const isBody = /正文/.test(c) && !t1 && !t2;
+    if (isBody || t1 || t2) {
+      const font = findIn(c, FONT_WORDS), size = findSize(c);
+      if (font && !t1 && !t2) push('bodyFont', font, c, true);
+      if (size) push(t1 ? 'h1' : t2 ? 'h2' : 'bodySize', size, c, true);
+    }
+    if (/行距/.test(c)) { const m = /(\d+(?:\.\d+)?)\s*倍/.exec(c); if (m) push('bodyLine', m[1], c, true); }
+    if (/缩进/.test(c)) { const m = /(\d+)\s*字符/.exec(c); if (m) push('bodyIndent', m[1], c, true); }
+    if (/两端对齐/.test(c)) push('bodyAlign', 'both', c, true);
+    else if (/左对齐/.test(c)) push('bodyAlign', 'left', c, true);
+    if (/页码/.test(c)) { if (/阿拉伯|数字/.test(c)) push('pageNum', 'decimal', c, true); else if (/罗马/.test(c)) push('pageNum', 'lowerRoman', c, true); }
+  }
+  if (/GB\s*\/?\s*T\s*7714|参考文献/.test(text)) push('ref', null, '检测到 GB/T 7714 或参考文献要求，已开启该项检查', true);
+  const seen = new Set();
+  return out.filter(o => { const k = o.id + '|' + o.value; if (seen.has(k)) return false; seen.add(k); return true; });
+}
+const RULE_SPEC = RULES.map(r => ({ id: r.id, name: r.name, values: r.opts ? (Array.isArray(r.opts) ? r.opts : Object.keys(r.opts)) : null }));
+async function extractLLM(text, cfg) {
+  const prompt = `你是论文格式规范解析助手。从下面的高校毕业论文格式规范文字中，抽取可校验的格式规则。\n\n可输出的规则 id 及候选值：\n${JSON.stringify(RULE_SPEC)}\n\n要求：\n1. 只输出 JSON 数组，不要任何解释文字。\n2. 每项格式：{"id":"规则id","value":"期望值，必须在候选值内，没有候选值则填 null","evidence":"依据的原文片段"}\n3. 只抽取原文明确提到的项，不要推测。\n\n规范原文：\n${text.slice(0, 6000)}`;
+  const res = await fetch(cfg.url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + cfg.key }, body: JSON.stringify({ model: cfg.model, messages: [{ role: 'user', content: prompt }], temperature: 0 }) });
+  if (!res.ok) throw new Error('接口返回 ' + res.status);
+  const data = await res.json();
+  const content = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
+  const m = /\[[\s\S]*\]/.exec(content);
+  if (!m) throw new Error('未能解析返回内容');
+  return JSON.parse(m[0]).filter(x => x && x.id).map(x => ({ id: x.id, value: x.value, evidence: String(x.evidence || '').slice(0, 90), conf: 'hi' }));
+}
+function renderCands(list) {
+  const box = document.getElementById('cands');
+  box.innerHTML = '';
+  if (!list.length) { box.innerHTML = '<div class="empty">没有从这段文字中抽取出可识别的格式要求。可以试试换一段更具体的规范文字。</div>'; return; }
+  const head = document.createElement('div');
+  head.style.cssText = 'font-size:13px;font-weight:600;margin-bottom:8px';
+  head.textContent = `抽取到 ${list.length} 条候选规则，勾选后应用`;
+  box.appendChild(head);
+  let shown = 0;
+  list.forEach((c, i) => {
+    const r = RULES.find(x => x.id === c.id);
+    if (!r) return;
+    shown++;
+    const d = document.createElement('div');
+    d.className = 'cand';
+    const valTxt = c.custom
+      ? `上${c.custom.top ?? '-'} 下${c.custom.bottom ?? '-'} 左${c.custom.left ?? '-'} 右${c.custom.right ?? '-'} cm`
+      : (c.value ? c.value : '开启该项检查');
+    d.innerHTML = `<div class="l1">
+        <input type="checkbox" ${c.conf === 'hi' ? 'checked' : ''} data-i="${i}">
+        <span class="nm">${esc(r.name)}</span>
+        <span class="vv">→ ${esc(valTxt)}</span>
+        <span class="conf ${c.conf === 'hi' ? 'hi' : 'lo'}">${c.conf === 'hi' ? '明确' : '待核对'}</span>
+      </div>
+      <div class="ev">依据：${esc(c.evidence)}</div>`;
+    box.appendChild(d);
+  });
+  if (!shown) { box.innerHTML = '<div class="empty">没有匹配到已知检查项。</div>'; return; }
+  const btn = document.createElement('button');
+  btn.className = 'primary'; btn.textContent = '应用勾选的规则'; btn.style.marginTop = '10px';
+  btn.onclick = () => {
+    let n = 0;
+    for (const b of box.querySelectorAll('input[type=checkbox]')) {
+      if (!b.checked) continue;
+      const c = list[+b.dataset.i], r = RULES.find(x => x.id === c.id);
+      if (!r) continue;
+      r.on = true; n++;
+      if (c.custom) {
+        const t = { top: cmToTwips(c.custom.top ?? 2.54), bottom: cmToTwips(c.custom.bottom ?? 2.54), left: cmToTwips(c.custom.left ?? 3.17), right: cmToTwips(c.custom.right ?? 3.17) };
+        const key = 'custom' + Date.now();
+        r.opts[key] = `上${c.custom.top} 下${c.custom.bottom} 左${c.custom.left} 右${c.custom.right} cm`;
+        r.exp = key;
+        r.target = () => t;
+      } else if (c.value) r.exp = c.value;
+    }
+    renderRules();
+    if (LAST) runCheck();
+    btn.textContent = `已应用 ${n} 条`;
+    setTimeout(() => { btn.textContent = '应用勾选的规则'; }, 2000);
+  };
+  box.appendChild(btn);
+}
+
+/* ================= 界面 ================= */
+function renderRules() {
+  const box = document.getElementById('rules');
+  box.innerHTML = '';
+  for (const g of [...new Set(RULES.map(r => r.group))]) {
+    const d = document.createElement('div'); d.className = 'rule-group';
+    d.innerHTML = `<div class="gname">${g}</div>`;
+    for (const r of RULES.filter(x => x.group === g)) {
+      const row = document.createElement('div'); row.className = 'rule';
+      const lab = document.createElement('label');
+      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = r.on;
+      cb.onchange = () => { r.on = cb.checked; };
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(r.name));
+      row.appendChild(lab);
+      if (r.opts) {
+        const sel = document.createElement('select');
+        for (const [v, t] of Array.isArray(r.opts) ? r.opts.map(x => [x, x]) : Object.entries(r.opts)) {
+          const o = document.createElement('option'); o.value = v; o.textContent = t; if (v === r.exp) o.selected = true; sel.appendChild(o);
+        }
+        sel.onchange = () => { r.exp = sel.value; };
+        const sp = document.createElement('span'); sp.className = 'exp'; sp.textContent = '期望';
+        row.appendChild(sp); row.appendChild(sel);
+      }
+      d.appendChild(row);
+    }
+    box.appendChild(d);
+  }
+}
+function resetRules() { RULES.forEach((r, i) => { r.on = DEFAULTS[i].on; r.exp = DEFAULTS[i].exp; }); renderRules(); }
+
+/* ================= 读写文件 ================= */
+let PERF = {};
+let _pt = 0;
+const tick = () => { const n = performance.now(); const d = Math.round((n - _pt) * 10) / 10; _pt = n; return d; };
+// 剔除纯元数据节点：拼写检查标记、修订追踪 rsid、分页缓存。
+// 不影响任何格式与内容，但能显著缩小 XML、加快 DOM 构建（Word 文档里 rsid 常占 15%~30% 体积）。
+// 注意：不删 bookmarkStart/End —— 那会影响 Word 目录跳转。
+function cleanXml(xml) {
+  let s = xml;
+  s = s.replace(/<w:proofErr\b[^>]*\/>/g, '');
+  s = s.replace(/<w:lastRenderedPageBreak\b[^>]*\/>/g, '');
+  s = s.replace(/<w:softHyphen\b[^>]*\/>/g, '');
+  s = s.replace(/\s+w:rsid[A-Za-z]*="[^"]*"/g, '');
+  return s;
+}
+const nextFrame = () => new Promise(r => requestAnimationFrame(() => r()));
+async function loadDocx(file) {
+  const meta = document.getElementById('meta');
+  PERF = {}; _pt = performance.now();
+  const step = async t => { meta.innerHTML = `<span class="busy">${esc(t)}</span>`; await nextFrame(); };
+  try {
+  if (!/\.docx$/i.test(file.name)) throw new Error('不是 .docx 文件');
+  await step('正在读取文件…');
+  const buf = await file.arrayBuffer();          PERF['读文件'] = tick();
+  await step(`正在解压（${(buf.byteLength / 1024 / 1024).toFixed(1)} MB）…`);
+  let zip;
+  try { zip = new MiniZip(new Uint8Array(buf)); }
+  catch (e) {
+    if (e.message === 'NOZIP') throw new Error('这个文件不是有效的 docx（不是 ZIP 结构）。可能是 .doc 改了后缀、WPS 加密文档、或文件已损坏。请用 Word/WPS 打开后「另存为 .docx」再试。');
+    throw e;
+  }
+  PERF['解压'] = tick();
+  if (!zip.has('word/document.xml'))
+    throw new Error('这个 docx 里没有 word/document.xml。可能是 .doc 改了后缀、WPS 加密文档、或文件已损坏。请用 Word/WPS 打开后「另存为 .docx」再试。');
+  await step('正在提取正文…');
+  const rawXml = await zip.text('word/document.xml');  PERF['取XML'] = tick();
+  const docXml = cleanXml(rawXml);                     PERF['清洗'] = tick();
+  const styles = zip.has('word/styles.xml') ? parseStyles(await zip.text('word/styles.xml')) : parseStyles(null);
+  PERF['样式表'] = tick();
+  await step(`正在解析正文（${(rawXml.length / 1024 / 1024).toFixed(1)} MB）…`);
+  const docDom = new DOMParser().parseFromString(docXml, 'application/xml'); PERF['解析XML'] = tick();
+  if (!docDom || !docDom.documentElement || docDom.getElementsByTagName('parsererror').length)
+    throw new Error('正文 XML 无法解析，文件可能已损坏。');
+  const { paras, page } = parseDocument(docDom, styles);              PERF['读段落'] = tick();
+  await step(`正在检查 ${paras.length} 个段落…`);
+  FIXED_COUNT = 0;
+  FIX_LOG = [];
+  PV_LIMIT = 300; PV_MODE = 'all';
+  document.getElementById('pvAll').classList.add('on');
+  document.getElementById('pvBad').classList.remove('on');
+  LAST = { zip, docDom, styles, paras, page, name: file.name };
+  const body = paras.filter(p => !p.headingLevel && !isRef(p.text) && p.text.trim()).length;
+  meta.innerHTML = `<span>${esc(file.name)}</span><span>段落 ${paras.length}</span><span>正文 ${body}</span>` +
+    (page && page.w ? `<span>页面 ${twipsToCm(page.w)} × ${twipsToCm(page.h)} cm</span>` : '');
+  document.getElementById('run').disabled = false;
+  document.getElementById('download').disabled = true;
+  document.getElementById('docBar').classList.remove('hidden');
+  runCheck();
+  PERF['合计'] = Math.round(Object.values(PERF).reduce((a, b) => a + b, 0) * 10) / 10;
+  const el = document.createElement('span');
+  el.className = 'perf';
+  el.textContent = `解析耗时 ${(PERF['合计'] / 1000).toFixed(2)} 秒`;
+  el.title = Object.entries(PERF).map(([k, v]) => `${k} ${v}ms`).join('\n');
+  meta.appendChild(el);
+  console.debug('[性能]', JSON.stringify(PERF));
+  } catch (e) {
+    console.error(e);
+    LAST = null;
+    let msg = (e && e.message) ? e.message : String(e);
+    if (msg === 'NOZIP' || /end of central directory|not a zip|Can't read the data|Invalid/i.test(msg))
+      msg = '这个文件不是有效的 docx 压缩包（常见于：.doc 直接改了后缀、WPS 加密文档、文件传输中损坏）。请用 Word 或 WPS 打开后「另存为 .docx」，再重新上传。';
+    else if (msg === 'INFLATE' || msg === 'NOINFLATE' || /^COMP:/.test(msg))
+      msg = '正文的压缩数据解压失败，文件可能不完整或已损坏。请用 Word 或 WPS 打开后「另存为 .docx」，再重新上传。';
+    meta.innerHTML = `<span class="err">解析失败：${esc(msg)}</span>`;
+    document.getElementById('run').disabled = true;
+    document.getElementById('download').disabled = true;
+    document.getElementById('previewCard').classList.add('hidden');
+    document.getElementById('resultCard').classList.add('hidden');
+    document.getElementById('docBar').classList.add('hidden');
+    showNote('解析失败：' + msg, true);
+  }
+}
+let TOAST_T = null;
+function showNote(msg, bad) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (bad ? ' bad' : '');
+  clearTimeout(TOAST_T);
+  TOAST_T = setTimeout(() => t.classList.add('hidden'), bad ? 7000 : 4500);
+}
+function saveBlob(blob, filename) {
+  // 注意：必须挂到文档里再触发点击，部分浏览器（Safari / Firefox）不认游离节点上的 click 下载
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { try { document.body.removeChild(a); } catch (e) {} URL.revokeObjectURL(url); }, 6000);
+}
+async function downloadFixed() {
+  if (!LAST) { showNote('请先上传论文，并至少修正一项后再下载。', true); return; }
+  if (FIXED_COUNT === 0) { showNote('还没有做任何修正，下载的文件会和原文件一样。请先点「一键修正」或逐条修正。', true); return; }
+  try {
+    const dom = LAST.docDom;
+    if (!dom || !dom.documentElement) { showNote('文档数据已失效，请重新上传文件。', true); return; }
+    let xml = new XMLSerializer().serializeToString(dom.documentElement);
+    if (!xml || xml.length < 60 || !/<(w:)?document[\s>]/.test(xml)) {
+      showNote('文档序列化结果异常，已中止，未生成文件。请刷新页面重新上传。', true); return;
+    }
+    xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\r\n' + xml;
+    const bytes = await LAST.zip.rebuild(new Map([['word/document.xml', xml]]));
+    const blob = new Blob([bytes], {
+      type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    });
+    if (!blob || blob.size < 1000) {
+      showNote('生成结果异常（' + (blob ? blob.size : 0) + ' 字节），请重新上传后重试。', true); return;
+    }
+    saveBlob(blob, LAST.name.replace(/\.docx$/i, '') + '-已修正.docx');
+    showNote('已生成「' + LAST.name.replace(/\.docx$/i, '') + '-已修正.docx」（' + (blob.size / 1024).toFixed(1) +
+      ' KB）。若没看到下载，检查浏览器是否拦截了本页面的下载，或地址栏右侧的下载图标。');
+  } catch (e) {
+    console.error(e);
+    showNote('生成失败：' + e.message, true);
+  }
+}
+function buildReport() {
+  const items = collectIssues();
+  const err = items.filter(i => i.level === 'error').length;
+  const warn = items.filter(i => i.level === 'warn').length;
+  const L = [];
+  L.push('# 毕业论文格式检查报告', '');
+  L.push('- 文件：' + LAST.name);
+  L.push('- 生成时间：' + new Date().toLocaleString('zh-CN'));
+  L.push('- 段落总数：' + LAST.paras.length);
+  L.push('- 本次已自动修正：**' + FIXED_COUNT + '** 项');
+  L.push('- 仍需处理：**' + items.length + '** 项（必须修改 ' + err + '，建议修改 ' + warn + '）');
+  L.push('');
+  L.push('## 一、本次已自动修正', '');
+  if (!FIX_LOG.length) L.push('（本次尚未执行自动修正）', '');
+  else { FIX_LOG.forEach((x, i) => L.push(`${i + 1}. [${x.pos}] ${x.name}${x.cur ? '　' + x.cur : ''}`)); L.push(''); }
+  L.push('## 二、仍需处理的问题', '');
+  if (!items.length) { L.push('无。当前规范下未发现剩余格式问题。', ''); }
+  else {
+    for (const g of [...new Set(items.map(i => i.group))]) {
+      L.push('### ' + g, '');
+      items.filter(i => i.group === g).forEach((it, i) => {
+        const pos = it.para ? `第 ${it.para.index + 1} 段` : '整篇';
+        const cur = it.cur ? `（当前 ${String(it.cur).slice(0, 50)}，应为 ${it.exp || '—'}）` : '';
+        L.push(`${i + 1}. ${it.level === 'error' ? '【必须】' : '【建议】'} ${it.rule}　${pos}${cur}`);
+        if (it.msg && it.msg !== it.rule) L.push('   - ' + it.msg);
+        if (it.para && it.para.text.trim()) L.push('   - 原文：' + it.para.text.slice(0, 100));
+      });
+      L.push('');
+    }
+  }
+  L.push('## 三、本次使用的规范参数', '');
+  L.push('| 检查项 | 状态 | 期望值 |');
+  L.push('| --- | --- | --- |');
+  for (const r of RULES) {
+    const v = r.exp == null ? '—' : ((r.opts && r.opts[r.exp]) ? r.opts[r.exp] : r.exp);
+    L.push(`| ${r.name} | ${r.on ? '启用' : '关闭'} | ${v} |`);
+  }
+  L.push('');
+  L.push('---', '');
+  L.push('说明：自动修正仅改动格式属性与标点、空格，不改动论述内容；参考文献条目信息缺失需手动补全。');
+  return L.join('\n');
+}
+
+/* ================= 事件 ================= */
+const drop = document.getElementById('drop'), fileInput = document.getElementById('file');
+drop.onclick = () => fileInput.click();
+function acceptFile(f) {
+  if (!f) return;
+  if (!/\.docx$/i.test(f.name)) {
+    showNote('只支持 .docx。如果是 .doc / .pdf，请用 Word 或 WPS 打开后「另存为 .docx」再来。', true);
+    return;
+  }
+  loadDocx(f);
+}
+fileInput.onchange = e => { acceptFile(e.target.files[0]); e.target.value = ''; };  // 清空后才能重复选同一个文件
+drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+drop.ondragleave = () => drop.classList.remove('over');
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); acceptFile(e.dataTransfer.files[0]); };
+
+/* 示例论文：内嵌在页面里，点一下就能体验完整流程 */
+document.getElementById('useDemo').onclick = async () => {
+  try {
+    const bin = atob(DEMO_B64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    await loadDocx(new File([arr], '示例论文-含格式问题.docx'));
+    showNote('已加载示例论文。点「一键修正」看看效果，再下载对比。');
+  } catch (e) {
+    console.error(e);
+    showNote('示例加载失败：' + e.message, true);
+  }
+};
+
+document.getElementById('run').onclick = runCheck;
+document.getElementById('reset').onclick = resetRules;
+document.getElementById('fixAll').onclick = () => doFix(collectIssues().filter(i => i.fix));
+document.getElementById('download').onclick = downloadFixed;
+document.getElementById('pvAll').onclick = () => { PV_MODE = 'all'; document.getElementById('pvAll').classList.add('on'); document.getElementById('pvBad').classList.remove('on'); renderPreview(collectIssues()); };
+document.getElementById('pvBad').onclick = () => { PV_MODE = 'bad'; document.getElementById('pvBad').classList.add('on'); document.getElementById('pvAll').classList.remove('on'); renderPreview(collectIssues()); };
+/* 移除已上传的文档：清空全部与文档相关的状态和界面，回到刚打开页面的样子 */
+function clearDoc(silent) {
+  if (LAST && FIXED_COUNT > 0 && !silent) {
+    if (!confirm(`本次已自动修正 ${FIXED_COUNT} 项，但还没下载修正后的文档。\n移除后这些改动会丢失，确定继续吗？\n（建议先点「下载修正后的文档」）`)) return;
+  }
+  LAST = null; FIXED_COUNT = 0; FIX_LOG = []; PERF = {};
+  PV_LIMIT = 300; PV_MODE = 'all';
+  document.getElementById('meta').innerHTML = '';
+  document.getElementById('docBar').classList.add('hidden');
+  document.getElementById('previewCard').classList.add('hidden');
+  document.getElementById('resultCard').classList.add('hidden');
+  document.getElementById('fixBar').classList.add('hidden');
+  document.getElementById('pv').innerHTML = '';
+  document.getElementById('pvMeta').innerHTML = '';
+  document.getElementById('issues').innerHTML = '';
+  document.getElementById('stats').innerHTML = '';
+  document.getElementById('run').disabled = true;
+  document.getElementById('download').disabled = true;
+  document.getElementById('file').value = '';   // 允许再次选择同一个文件
+  document.getElementById('pvAll').classList.add('on');
+  document.getElementById('pvBad').classList.remove('on');
+  if (!silent) showNote('已移除文档，可以重新上传了。');
+}
+document.getElementById('removeDoc').onclick = () => clearDoc(false);
+
+/* 检查报告：先弹窗预览，再决定复制还是下载。
+   这样即使浏览器/预览面板拦截了下载，内容也一定拿得到。 */
+let RPT_NAME = '';
+function openReport() {
+  if (!LAST) { showNote('请先上传论文再查看报告。', true); return; }
+  let text;
+  try { text = buildReport(); }
+  catch (e) { console.error(e); showNote('生成报告失败：' + e.message, true); return; }
+  RPT_NAME = LAST.name.replace(/\.docx$/i, '') + '-格式检查报告';
+  document.getElementById('rptText').textContent = text;
+  document.getElementById('rptMask').classList.remove('hidden');
+}
+function closeReport() { document.getElementById('rptMask').classList.add('hidden'); }
+document.getElementById('export').onclick = openReport;
+document.getElementById('rptClose').onclick = closeReport;
+document.getElementById('rptMask').onclick = e => { if (e.target.id === 'rptMask') closeReport(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReport(); });
+document.getElementById('rptDlMd').onclick = () => {
+  saveBlob(new Blob([document.getElementById('rptText').textContent], { type: 'text/markdown;charset=utf-8' }), RPT_NAME + '.md');
+  showNote('已生成「' + RPT_NAME + '.md」。若没看到下载，可先点「复制全文」。');
+};
+document.getElementById('rptDlTxt').onclick = () => {
+  saveBlob(new Blob([document.getElementById('rptText').textContent], { type: 'text/plain;charset=utf-8' }), RPT_NAME + '.txt');
+  showNote('已生成「' + RPT_NAME + '.txt」。若没看到下载，可先点「复制全文」。');
+};
+document.getElementById('rptCopy').onclick = async () => {
+  const text = document.getElementById('rptText').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    showNote('报告已复制到剪贴板，可直接粘贴到 Word 或聊天窗口。');
+  } catch (e) {
+    // 剪贴板接口在部分环境（非安全上下文 / 旧浏览器）不可用，回退到选中 + execCommand
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      showNote(ok ? '报告已复制到剪贴板。' : '复制未成功，请手动选中报告文字后按 Ctrl/⌘ + C。', !ok);
+    } catch (e2) { showNote('复制未成功，请手动选中报告文字后按 Ctrl/⌘ + C。', true); }
+  }
+};
+document.getElementById('extract').onclick = () => {
+  const t = document.getElementById('specText').value.trim();
+  if (!t) { alert('请先粘贴规范文字'); return; }
+  renderCands(extractLocal(t));
+};
+document.getElementById('extractLLM').onclick = async () => {
+  const box = document.getElementById('llmCfg');
+  if (box.classList.contains('hidden')) { box.classList.remove('hidden'); return; }
+  const t = document.getElementById('specText').value.trim();
+  if (!t) { alert('请先粘贴规范文字'); return; }
+  const cfg = { url: document.getElementById('llmUrl').value.trim(), key: document.getElementById('llmKey').value.trim(), model: document.getElementById('llmModel').value.trim() || 'gpt-4o-mini' };
+  if (!cfg.url || !cfg.key) { alert('请填写接口地址与密钥'); return; }
+  try { renderCands(await extractLLM(t, cfg)); } catch (e) { alert('抽取失败：' + e.message); }
+};
+document.getElementById('pickSpec').onclick = () => document.getElementById('specFile').click();
+document.getElementById('specFile').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  if (/\.docx$/i.test(f.name)) {
+    let z;
+    try { z = new MiniZip(new Uint8Array(await f.arrayBuffer())); }
+    catch (e) { alert('这个 docx 读不出来，请换个文件或另存为 .docx 后重试。'); return; }
+    if (!z.has('word/document.xml')) { alert('这个 docx 里没有正文，无法提取。'); return; }
+    const dom = new DOMParser().parseFromString(await z.text('word/document.xml'), 'application/xml');
+    let s = ''; for (const t of dom.getElementsByTagNameNS(WNS, 't')) s += t.textContent + '\n';
+    document.getElementById('specText').value = s;
+  } else document.getElementById('specText').value = await f.text();
+};
+
+renderRules();
+/* 本工具是纯静态单文件：自带 ZIP 读写，优先用浏览器原生解压接口，
+   不支持时自动回退到内置的纯 JS 解压。因此不需要任何外部库或联网。 */
+window.__t = { get LAST() { return LAST; }, get FIX_LOG() { return FIX_LOG; }, get PERF() { return PERF; }, cleanXml, loadDocx, collectIssues, doFix, extractLocal, renderCands, parseDocument, downloadFixed, buildReport, renderPreview, clearDoc, openReport, closeReport, RULES, MiniZip, inflateRaw, FIXED: () => FIXED_COUNT };
+</script>
+</body>
+</html>
